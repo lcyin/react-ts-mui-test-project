@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import TopBar from './components/AppBar/TopBar';
 import BottomBar from './components/AppBar/BottomBar';
-import List from './components/List/List';
+import List from './components/VirtualizedTable/VirtualizedTable';
 
 import './style.css';
 

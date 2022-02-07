@@ -215,17 +215,17 @@ export default function ReactVirtualizedTable() {
         columns={[
           {
             width: 120,
-            label: 'Dessert',
+            label: 'Route',
             dataKey: 'route',
           },
           {
             width: 200,
-            label: 'Calories\u00A0(g)',
+            label: 'Destination',
             dataKey: 'title',
           },
           {
             width: 60,
-            label: 'Fat\u00A0(g)',
+            label: 'Minutes',
             dataKey: 'mins',
           },
         ]}

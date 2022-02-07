@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import Hello from './components/Hello/Hello';
 import TopBar from './components/AppBar/TopBar';
 import BottomBar from './components/AppBar/BottomBar';
+import VirtualizedTable from './components/VirtualizedTable/VirtualizedTable';
 
 import './style.css';
 
@@ -10,9 +10,8 @@ function App() {
   return (
     <div className="App">
       <TopBar title="Header" />
-      <Hello name="React" />
+      <VirtualizedTable />
       <BottomBar />
-      <p>Start editing to see some magic happen :)</p>
     </div>
   );
 }

@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <div className="App">
       <TopBar title="Header" />
-      <RouteList rows={rows} columns={columns} />
+      <RouteList rows={rows} columns={columns} redirect="/routeInfo" />
       <BottomBar />
     </div>
   );

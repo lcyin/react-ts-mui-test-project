@@ -1,4 +1,4 @@
-interface Data {
+export interface Data {
   route: string;
   title: string;
   mins: string;

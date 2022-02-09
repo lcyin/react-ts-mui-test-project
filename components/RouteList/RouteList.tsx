@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import clsx from 'clsx';
 import { withStyles, WithStyles } from '@mui/styles';
 import { Theme, createTheme } from '@mui/material/styles';
@@ -11,6 +13,7 @@ import {
   TableCellRenderer,
   TableHeaderProps,
 } from 'react-virtualized';
+import { Data } from '../data';
 
 const styles = (theme: Theme) =>
   ({
@@ -77,7 +80,7 @@ class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> 
     const { classes, onRowClick } = this.props;
 
     return clsx(classes.tableRow, classes.flexContainer, {
-      [classes.tableRowHover]: index !== -1 && onRowClick != null,
+      [classes.tableRowHover]: index !== -1 && onRowClick != true,
     });
   };
 
@@ -87,7 +90,7 @@ class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> 
       <TableCell
         component="div"
         className={clsx(classes.tableCell, classes.flexContainer, {
-          [classes.noClick]: onRowClick == null,
+          [classes.noClick]: onRowClick == true,
         })}
         variant="body"
         style={{ height: rowHeight }}
@@ -174,29 +177,17 @@ const VirtualizedTable = withStyles(styles, { defaultTheme })(
 
 // ---
 
-export default function ReactVirtualizedTable({ rows, columns }) {
+export default function ReactVirtualizedTable({ rows, columns, redirect }) {
+  let navigate = useNavigate();
   return (
     <Paper style={{ height: 500, width: '100%' }}>
       <VirtualizedTable
         rowCount={rows.length}
         rowGetter={({ index }) => rows[index]}
-        columns={[
-          {
-            width: 120,
-            label: 'Route',
-            dataKey: 'route',
-          },
-          {
-            width: 200,
-            label: 'Destination',
-            dataKey: 'title',
-          },
-          {
-            width: 60,
-            label: 'Minutes',
-            dataKey: 'mins',
-          },
-        ]}
+        columns={columns}
+        onRowClick={(e) => {
+          navigate(`/routeInfo/?route=${e.rowData.route}`);
+        }}
       />
     </Paper>
   );

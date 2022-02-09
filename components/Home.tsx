@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TopBar from './AppBar/TopBar';
 import BottomBar from './AppBar/BottomBar';
-import List from './VirtualizedTable/VirtualizedTable';
+import RouteList from './RouteList/RouteList';
 
 import '../style.css';
 
@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="App">
       <TopBar title="Header" />
-      <List />
+      <RouteList />
       <BottomBar />
     </div>
   );

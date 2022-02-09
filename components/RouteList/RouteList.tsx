@@ -11,6 +11,7 @@ import {
   TableCellRenderer,
   TableHeaderProps,
 } from 'react-virtualized';
+import { rows } from '../data';
 
 const styles = (theme: Theme) =>
   ({
@@ -173,38 +174,6 @@ const VirtualizedTable = withStyles(styles, { defaultTheme })(
 );
 
 // ---
-
-interface Data {
-  route: string;
-  title: string;
-  mins: number;
-  id: number;
-}
-type Sample = [string, number, number, number, number];
-
-const sample = [['296C', 'Sheung Tak', 'Cheung Sha Wan Bus Station', 1]];
-
-function createData(
-  id: number,
-  route: string,
-  destination: string,
-  station: string,
-  mins: number
-): Data {
-  return {
-    id,
-    route,
-    title: `To: ${destination} ${station}`,
-    mins: `${mins.toString()} mins`,
-  };
-}
-
-const rows: Data[] = [];
-
-for (let i = 0; i < 200; i += 1) {
-  const randomSelection = sample[Math.floor(Math.random() * sample.length)];
-  rows.push(createData(i, ...randomSelection));
-}
 
 export default function ReactVirtualizedTable() {
   return (

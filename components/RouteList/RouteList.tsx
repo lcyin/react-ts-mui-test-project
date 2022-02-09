@@ -11,7 +11,6 @@ import {
   TableCellRenderer,
   TableHeaderProps,
 } from 'react-virtualized';
-import { rows } from '../data';
 
 const styles = (theme: Theme) =>
   ({
@@ -175,7 +174,7 @@ const VirtualizedTable = withStyles(styles, { defaultTheme })(
 
 // ---
 
-export default function ReactVirtualizedTable() {
+export default function ReactVirtualizedTable({ rows, columns }) {
   return (
     <Paper style={{ height: 500, width: '100%' }}>
       <VirtualizedTable

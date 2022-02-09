@@ -26,7 +26,7 @@ const columns = [
 export default function Home() {
   return (
     <div className="App">
-      <TopBar title="Header" />
+      <TopBar icon="menu" title="Header" />
       <RouteList rows={rows} columns={columns} redirect="/routeInfo" />
       <BottomBar />
     </div>

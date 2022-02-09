@@ -3,11 +3,16 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
-export default function ButtonAppBar({ title }) {
+const iconMap = {
+  menu: <MenuIcon />,
+  back: <ArrowBackIosIcon />,
+};
+
+export default function ButtonAppBar({ title, icon }) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar color="secondary" position="static">
@@ -19,7 +24,7 @@ export default function ButtonAppBar({ title }) {
             aria-label="menu"
             sx={{ mr: 2 }}
           >
-            <MenuIcon />
+            {iconMap[icon]}
           </IconButton>
           <Typography
             align="center"

@@ -8,7 +8,7 @@ export default function RouteInfo() {
   const selectedRoute = rows[0];
   return (
     <div className="RouteInfo">
-      <TopBar title={selectedRoute.route} />
+      <TopBar icon="back" title={selectedRoute.route} />
       <StationStep />
       <BottomBar />
     </div>

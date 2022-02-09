@@ -1,4 +1,7 @@
 import React from 'react';
+import BottomBar from './AppBar/BottomBar';
+import TopBar from './AppBar/TopBar';
+import StationStep from './StationStep/StationStep';
 import { rows } from './data';
 
 export default function RouteInfo() {
@@ -6,6 +9,7 @@ export default function RouteInfo() {
   return (
     <div className="RouteInfo">
       <TopBar title={selectedRoute.route} />
+      <StationStep />
       <BottomBar />
     </div>
   );

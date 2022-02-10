@@ -7,30 +7,15 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { StepContent } from '@mui/material';
 
-export default function HorizontalNonLinearStepper({ steps }) {
+export default function HorizontalNonLinearStepper({ onClick, steps }) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState<{
     [k: number]: boolean;
   }>({});
 
-  const totalSteps = () => {
-    return steps.length;
-  };
-
-  const completedSteps = () => {
-    return Object.keys(completed).length;
-  };
-
-  const isLastStep = () => {
-    return activeStep === totalSteps() - 1;
-  };
-
-  const allStepsCompleted = () => {
-    return completedSteps() === totalSteps();
-  };
-
-  const handleStep = (step: number) => () => {
+  const handleStep = (data, step: number) => () => {
     setActiveStep(step);
+    onClick(data);
   };
 
   return (
@@ -38,7 +23,7 @@ export default function HorizontalNonLinearStepper({ steps }) {
       <Stepper nonLinear activeStep={activeStep} orientation="vertical">
         {steps.map((step, index) => (
           <Step key={step.label} completed={completed[index]}>
-            <StepButton color="inherit" onClick={handleStep(index)}>
+            <StepButton color="inherit" onClick={handleStep(step, index)}>
               <Typography variant="h5">{step.label}</Typography>
             </StepButton>
 

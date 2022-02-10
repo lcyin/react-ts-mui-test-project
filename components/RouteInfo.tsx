@@ -10,6 +10,11 @@ export default function RouteInfo() {
   let [searchParams, setSearchParams] = useSearchParams();
   const [stepData, setStepDate] = useState([]);
 
+  const handleStepClick = (data) => {
+    console.log('handleStepClick');
+    console.log(data);
+  };
+
   useEffect(async () => {
     const route = searchParams.get('route');
     const bound = searchParams.get('bound');
@@ -47,7 +52,7 @@ export default function RouteInfo() {
   return (
     <div className="RouteInfo">
       <TopBar icon="back" title={selectedRoute.route} />
-      <StationStep steps={stepData} />
+      <StationStep onClick={handleStepClick} steps={stepData} />
       <BottomBar />
     </div>
   );

@@ -280,7 +280,7 @@ const steps = [
   },
 ];
 
-export default function HorizontalNonLinearStepper() {
+export default function HorizontalNonLinearStepper({ steps }) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState<{
     [k: number]: boolean;

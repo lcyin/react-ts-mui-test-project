@@ -9,6 +9,7 @@ import API from '../API';
 export default function RouteInfo() {
   let [searchParams, setSearchParams] = useSearchParams();
   const [stepData, setStepDate] = useState([]);
+
   useEffect(async () => {
     const route = searchParams.get('route');
     const bound = searchParams.get('bound');

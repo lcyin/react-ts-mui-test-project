@@ -37,6 +37,7 @@ export default function Home() {
             route: data.route,
             title: `往: ${data.dest_tc} `,
             mins: `- 分鐘`,
+            bound: data.bound,
           };
         })
         .filter((data) => data.route === '296C');

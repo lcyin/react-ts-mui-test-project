@@ -186,7 +186,9 @@ export default function ReactVirtualizedTable({ rows, columns, redirect }) {
         rowGetter={({ index }) => rows[index]}
         columns={columns}
         onRowClick={(e) => {
-          navigate(`/routeInfo/?route=${e.rowData.route}`);
+          navigate(
+            `/routeInfo/?route=${e.rowData.route}&bound=${e.rowData.bound}`
+          );
         }}
       />
     </Paper>

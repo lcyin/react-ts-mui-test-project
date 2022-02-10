@@ -26,7 +26,12 @@ export default function RouteInfo() {
         const busStopEta = await API.getAllStopEta(data.stop);
         busStopEta.data.forEach((etaData) => {
           if (etaData.route === route && etaData.dir === bound) {
-            result.schedule.push({ time: etaData.eta });
+            const routeTime = new Date(etaData.eta);
+            const different = routeTime - new Date();
+            const remaining =
+              different > 0 ? new Date(different).getMinutes() : 'Passed';
+
+            result.schedule.push({ time: remaining });
           }
         });
 

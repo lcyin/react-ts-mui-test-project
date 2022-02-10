@@ -24,3 +24,5 @@ const apiSetting = {
     return await (await fetch(`${STOP_ETA_API}/${busStopId}`)).json();
   },
 };
+
+export default apiSetting;

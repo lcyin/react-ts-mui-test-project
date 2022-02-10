@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
+import API from '../API';
 import TopBar from './AppBar/TopBar';
 import BottomBar from './AppBar/BottomBar';
 import RouteList from './RouteList/RouteList';
@@ -24,10 +25,29 @@ const columns = [
 ];
 
 export default function Home() {
+  const [dataRow, setDataRow] = useState([]);
+
+  useEffect(() => {
+    const getAllRoute = async () => {
+      const allRoute = await API.getAllRoute();
+      const routeDataRow = allRoute.data
+        .map((data, id) => {
+          return {
+            id,
+            route: data.route,
+            title: `往: ${data.dest_tc} `,
+            mins: `- 分鐘`,
+          };
+        })
+        .filter((data) => data.route === '296C');
+      setDataRow(routeDataRow);
+    };
+    getAllRoute();
+  }, []);
   return (
     <div className="App">
       <TopBar icon="menu" title="Header" />
-      <RouteList rows={rows} columns={columns} redirect="/routeInfo" />
+      <RouteList rows={dataRow} columns={columns} redirect="/routeInfo" />
       <BottomBar />
     </div>
   );

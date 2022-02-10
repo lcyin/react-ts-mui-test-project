@@ -14,26 +14,25 @@ export default function RouteInfo() {
     const bound = searchParams.get('bound');
     const allBusStop = await API.getAllBusStop();
     const allRouteBusStop = await API.getAllRouteStop(route, bound);
-    const _stepData = allRouteBusStop.data.map((data) => {
-      const busStop = allBusStop.data.find((stop) => stop.stop === data.stop);
-      const result = {
-        label: busStop.name_tc,
-        fee: '8.8',
-        schedule: [
-          {
-            time: 0,
-          },
-          {
-            time: 10,
-          },
-          {
-            time: 20,
-          },
-        ],
-      };
+    const _stepData = await Promise.all(
+      allRouteBusStop.data.map(async (data) => {
+        const busStop = allBusStop.data.find((stop) => stop.stop === data.stop);
+        const result = {
+          label: busStop.name_tc,
+          fee: '8.8',
+          schedule: [],
+        };
 
-      return result;
-    });
+        const busStopEta = await API.getAllStopEta(data.stop);
+        busStopEta.data.forEach((etaData) => {
+          if (etaData.route === route && etaData.dir === bound) {
+            result.schedule.push({ time: etaData.eta });
+          }
+        });
+
+        return result;
+      })
+    );
 
     setStepDate(_stepData);
   }, []);

@@ -48,6 +48,9 @@ export const useStationFetch = (steps) => {
       setIntervalId(interval as any);
       console.log(interval);
     }
+    return function cleanup() {
+      clearInterval(intervalId);
+    };
   }, [steps, station]);
   return {
     stationData,

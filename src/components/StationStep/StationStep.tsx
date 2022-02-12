@@ -34,12 +34,16 @@ export default function HorizontalNonLinearStepper({ steps }) {
             </StepButton>
 
             <StepContent>
-              {/* <Typography>${step.fee}</Typography> */}
-              {step.schedule.map((schedule) => (
-                <Typography variant="h6">
-                  {schedule.time > 0 ? schedule.time : '-'} mins
-                </Typography>
-              ))}
+              <Box sx={{ mb: 2 }}>
+                <div>
+                  {/* <Typography>${step.fee}</Typography> */}
+                  {step.schedule.map((schedule) => (
+                    <Typography variant="h6">
+                      {schedule.time > 0 ? schedule.time : '-'} mins
+                    </Typography>
+                  ))}
+                </div>
+              </Box>
             </StepContent>
           </Step>
         ))}

@@ -30,6 +30,7 @@
     "eject": "react-scripts-ts eject"
   },
   "devDependencies": {
-    "react-scripts-ts": "latest"
+    "react-scripts-ts": "latest",
+    "ts-loader": "^9.2.6"
   }
 }

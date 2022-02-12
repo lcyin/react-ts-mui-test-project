@@ -25,7 +25,7 @@ export default function HorizontalNonLinearStepper({ steps }) {
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ maxWidth: 425 }}>
       <Stepper nonLinear activeStep={activeStep} orientation="vertical">
         {stationData.map((step, index) => (
           <Step key={step.label} completed={completed[index]}>

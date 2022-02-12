@@ -13,7 +13,6 @@ import {
   TableCellRenderer,
   TableHeaderProps,
 } from 'react-virtualized';
-import { Data } from '../data';
 
 const styles = (theme: Theme) =>
   ({
@@ -66,7 +65,7 @@ interface MuiVirtualizedTableProps extends WithStyles<typeof styles> {
   headerHeight?: number;
   onRowClick?: () => void;
   rowCount: number;
-  rowGetter: (row: Row) => Data;
+  rowGetter: (row: Row) => any;
   rowHeight?: number;
 }
 

@@ -63,7 +63,7 @@ interface Row {
 interface MuiVirtualizedTableProps extends WithStyles<typeof styles> {
   columns: readonly ColumnData[];
   headerHeight?: number;
-  onRowClick?: () => void;
+  onRowClick?: (e) => void;
   rowCount: number;
   rowGetter: (row: Row) => any;
   rowHeight?: number;
@@ -79,17 +79,17 @@ class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> 
     const { classes, onRowClick } = this.props;
 
     return clsx(classes.tableRow, classes.flexContainer, {
-      [classes.tableRowHover]: index !== -1 && onRowClick != true,
+      [classes.tableRowHover]: index !== -1 && (onRowClick as any) !== true,
     });
   };
 
   cellRenderer: TableCellRenderer = ({ cellData, columnIndex }) => {
-    const { columns, classes, rowHeight, onRowClick } = this.props;
+    const { columns, classes, rowHeight, onRowClick  } = this.props;
     return (
       <TableCell
         component="div"
         className={clsx(classes.tableCell, classes.flexContainer, {
-          [classes.noClick]: onRowClick == true,
+          [classes.noClick]: (onRowClick as any) == true,
         })}
         variant="body"
         style={{ height: rowHeight }}

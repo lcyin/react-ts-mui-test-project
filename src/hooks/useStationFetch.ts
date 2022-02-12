@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import API from '../API';
+import React, { useEffect, useState } from "react";
+import API from "../API";
 
 const fetchStationScuedule = async (station) => {
   return (await API.getAllStopEta(station.stopId)).data
     .map((schedule) => {
       if (schedule.route === station.route && schedule.dir === station.bound) {
         const routeTime = new Date(schedule.eta);
-        const different = routeTime - new Date();
+        const different = routeTime.valueOf() - new Date().valueOf();
         const remaining =
-          different > 0 ? new Date(different).getMinutes() : 'Passed';
+          different > 0 ? new Date(different).getMinutes() : "Passed";
         return { time: remaining };
       }
     })
@@ -26,26 +26,28 @@ export const useStationFetch = (steps) => {
     [k: number]: boolean;
   }>({});
 
-  useEffect(async () => {
+  useEffect(() => {
     setStationData(steps);
     setStation(steps[activeStep]);
+    const refresh = async () => {
+      if (station) {
+        clearInterval(intervalId);
+        const interval = setInterval(async () => {
+          const stationSchedule = await fetchStationScuedule(station);
+          console.log(stationSchedule);
+          stationData.forEach((data) => {
+            if (data.stopId === station.stopId) {
+              data.schedule = stationSchedule;
+            }
+          });
 
-    if (station) {
-      clearInterval(intervalId);
-      const interval = setInterval(async () => {
-        const stationSchedule = await fetchStationScuedule(station);
-        console.log(stationSchedule);
-        stationData.forEach((data) => {
-          if (data.stopId === station.stopId) {
-            data.schedule = stationSchedule;
-          }
-        });
-
-        setStationData([...stationData]);
-      }, 10000);
-      setIntervalId(interval);
-      console.log(interval);
-    }
+          setStationData([...stationData]);
+        }, 10000);
+        setIntervalId(interval as any);
+        console.log(interval);
+      }
+      refresh();
+    };
   }, [steps, station]);
   return {
     stationData,

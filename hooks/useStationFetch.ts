@@ -42,7 +42,7 @@ export const useStationFetch = (steps) => {
         });
 
         setStationData([...stationData]);
-      }, 2000);
+      }, 10000);
       setIntervalId(interval);
       console.log(interval);
     }

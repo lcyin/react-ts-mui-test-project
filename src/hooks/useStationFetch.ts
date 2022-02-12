@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React, { useEffect, useState } from "react";
 import API from "../API";
 
@@ -26,28 +28,26 @@ export const useStationFetch = (steps) => {
     [k: number]: boolean;
   }>({});
 
-  useEffect(() => {
+  useEffect(async () => {
     setStationData(steps);
     setStation(steps[activeStep]);
-    const refresh = async () => {
-      if (station) {
-        clearInterval(intervalId);
-        const interval = setInterval(async () => {
-          const stationSchedule = await fetchStationScuedule(station);
-          console.log(stationSchedule);
-          stationData.forEach((data) => {
-            if (data.stopId === station.stopId) {
-              data.schedule = stationSchedule;
-            }
-          });
 
-          setStationData([...stationData]);
-        }, 10000);
-        setIntervalId(interval as any);
-        console.log(interval);
-      }
-      refresh();
-    };
+    if (station) {
+      clearInterval(intervalId);
+      const interval = setInterval(async () => {
+        const stationSchedule = await fetchStationScuedule(station);
+        console.log(stationSchedule);
+        stationData.forEach((data) => {
+          if (data.stopId === station.stopId) {
+            data.schedule = stationSchedule;
+          }
+        });
+
+        setStationData([...stationData]);
+      }, 10000);
+      setIntervalId(interval as any);
+      console.log(interval);
+    }
   }, [steps, station]);
   return {
     stationData,

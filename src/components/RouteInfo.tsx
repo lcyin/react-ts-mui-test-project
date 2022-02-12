@@ -1,3 +1,5 @@
+  //@ts-nocheck
+
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import BottomBar from './AppBar/BottomBar';
@@ -9,52 +11,46 @@ export default function RouteInfo() {
   let [searchParams, setSearchParams] = useSearchParams();
   const [stepData, setStepDate] = useState([]);
   const [currentRoute, setCurrentRoute] = useState('');
-
-
-  useEffect( () => {
+  useEffect(async () => {
     const route = searchParams.get('route');
     const bound = searchParams.get('bound');
     setCurrentRoute(route)
-    const _getAllBusStop = (async () => {
-      const allBusStop = await API.getAllBusStop();
-      const allRouteBusStop = await API.getAllRouteStop(route, bound);
-      const _stepData = await Promise.all(
-        allRouteBusStop.data.map(async (data) => {
-          const busStop = allBusStop.data.find((stop) => stop.stop === data.stop);
-          const result = {
-            label: busStop.name_tc,
-            fee: '8.8',
-            schedule: [],
-            stopId: data.stop,
-            route: route,
-            bound: bound,
-          };
-  
-          const busStopEta = await API.getAllStopEta(data.stop);
-          busStopEta.data.forEach((etaData) => {
-            if (etaData.route === route && etaData.dir === bound) {
-              const routeTime = new Date(etaData.eta);
-              const different = routeTime.valueOf() - new Date().valueOf();
-              const remaining =
-                different > 0 ? new Date(different).getMinutes() : 'Passed';
-  
-              result.schedule.push({ time: remaining });
-            }
-          });
-  
-          return result;
-        })
-      );
-  
-      setStepDate(_stepData);
-    })
-    _getAllBusStop()
+    const allBusStop = await API.getAllBusStop();
+    const allRouteBusStop = await API.getAllRouteStop(route, bound);
+    const _stepData = await Promise.all(
+      allRouteBusStop.data.map(async (data) => {
+        const busStop = allBusStop.data.find((stop) => stop.stop === data.stop);
+        const result = {
+          label: busStop.name_tc,
+          fee: '8.8',
+          schedule: [],
+          stopId: data.stop,
+          route: route,
+          bound: bound,
+        };
 
+        const busStopEta = await API.getAllStopEta(data.stop);
+        busStopEta.data.forEach((etaData) => {
+          if (etaData.route === route && etaData.dir === bound) {
+            const routeTime = new Date(etaData.eta);
+            const different = routeTime.valueOf() - new Date().valueOf();
+            const remaining =
+              different > 0 ? new Date(different).getMinutes() : 'Passed';
+
+            result.schedule.push({ time: remaining });
+          }
+        });
+
+        return result;
+      })
+    );
+
+    setStepDate(_stepData);
   }, []);
 
   return (
     <div className="RouteInfo">
-      <TopBar icon="back" title={currentRoute} />
+      <TopBar icon="back" title={route} />
       <StationStep steps={stepData} />
       <BottomBar />
     </div>

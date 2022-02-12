@@ -16,7 +16,7 @@ export default function ButtonAppBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
         color="secondary"
-        position="fixed"
+        position="static"
         sx={{ top: 'auto', bottom: 0 }}
       >
         <Toolbar>

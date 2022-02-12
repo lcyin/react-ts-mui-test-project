@@ -17,7 +17,7 @@ const iconMap = {
 
 export default function ButtonAppBar({ title, icon }) {
   return (
-    <Box sx={{ flexGrow: 1, maxWidth: 425 }}>
+    <Box sx={{ flexGrow: 1 }}>
       <AppBar color="secondary" position="static">
         <Toolbar>
           {/* <IconButton

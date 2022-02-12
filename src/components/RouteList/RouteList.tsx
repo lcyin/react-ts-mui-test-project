@@ -84,7 +84,7 @@ class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> 
   };
 
   cellRenderer: TableCellRenderer = ({ cellData, columnIndex }) => {
-    const { columns, classes, rowHeight, onRowClick  } = this.props;
+    const { columns, classes, rowHeight, onRowClick } = this.props;
     return (
       <TableCell
         component="div"
@@ -179,7 +179,7 @@ const VirtualizedTable = withStyles(styles, { defaultTheme })(
 export default function ReactVirtualizedTable({ rows, columns, redirect }) {
   let navigate = useNavigate();
   return (
-    <Paper style={{ height: 500, width: '100%' }}>
+    <Paper style={{ height: 600, width: 425 }}>
       <VirtualizedTable
         rowCount={rows.length}
         rowGetter={({ index }) => rows[index]}

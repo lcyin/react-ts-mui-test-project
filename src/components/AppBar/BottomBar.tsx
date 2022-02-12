@@ -13,11 +13,11 @@ import GradeOutlinedIcon from '@mui/icons-material/Grade';
 
 export default function ButtonAppBar() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, maxWidth: 425 }}>
       <AppBar
         color="secondary"
-        position="sticky"
-        sx={{ top: 'auto', bottom: 0 }}
+        position="fixed"
+        sx={{ top: 'auto', bottom: 0, maxWidth: 425, left: 8 }}
       >
         <Toolbar>
           <Box

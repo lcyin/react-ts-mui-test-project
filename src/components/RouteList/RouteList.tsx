@@ -179,7 +179,7 @@ const VirtualizedTable = withStyles(styles, { defaultTheme })(
 export default function ReactVirtualizedTable({ rows, columns, redirect }) {
   let navigate = useNavigate();
   return (
-    <Paper style={{ height: 500, width: '100%' }}>
+    <Paper style={{ height: 500, maxWidth: 425 }}>
       <VirtualizedTable
         rowCount={rows.length}
         rowGetter={({ index }) => rows[index]}

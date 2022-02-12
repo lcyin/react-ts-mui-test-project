@@ -5,7 +5,10 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import IconButton from '@mui/material/IconButton';
+import HomeIcon from '@mui/icons-material/Home';
+
 import MenuIcon from '@mui/icons-material/Menu';
+import { Link } from 'react-router-dom';
 
 const iconMap = {
   menu: <MenuIcon />,
@@ -17,7 +20,7 @@ export default function ButtonAppBar({ title, icon }) {
     <Box sx={{ flexGrow: 1, maxWidth: 425 }}>
       <AppBar color="secondary" position="static">
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             size="large"
             edge="start"
             color="inherit"
@@ -25,7 +28,10 @@ export default function ButtonAppBar({ title, icon }) {
             sx={{ mr: 2 }}
           >
             {iconMap[icon]}
-          </IconButton>
+          </IconButton> */}
+          <Link to="/">
+            <HomeIcon />
+          </Link>
           <Typography
             fontSize="2rem"
             align="center"

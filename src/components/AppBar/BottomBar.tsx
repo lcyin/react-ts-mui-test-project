@@ -17,7 +17,7 @@ export default function ButtonAppBar() {
       <AppBar
         color="secondary"
         position="fixed"
-        sx={{ top: 'auto', bottom: 0, maxWidth: 425, left: 8 }}
+        sx={{ top: 'auto', bottom: 100, maxWidth: 425, left: 8 }}
       >
         <Toolbar>
           <Box

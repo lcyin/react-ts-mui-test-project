@@ -52,7 +52,7 @@ export default function RouteInfo() {
     <div className="RouteInfo">
       <TopBar icon="back" title={currentRoute} />
       <StationStep steps={stepData} />
-      <BottomBar />
+      {/* <BottomBar /> */}
     </div>
   );
 }

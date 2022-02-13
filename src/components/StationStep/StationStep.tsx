@@ -28,9 +28,19 @@ export default function HorizontalNonLinearStepper({ steps }) {
     <Box sx={{ maxWidth: 425 }}>
       <Stepper nonLinear activeStep={activeStep} orientation="vertical">
         {stationData.map((step, index) => (
-          <Step key={step.label} completed={completed[index]}>
+          <Step
+            key={step.label}
+            completed={completed[index]}
+            sx={
+              activeStep === index
+                ? { backgroundColor: '#F8B6B4' }
+                : { backgroundColor: 'white' }
+            }
+          >
             <StepButton color="inherit" onClick={handleStep(step, index)}>
-              <Typography variant="h5">{step.label}</Typography>
+              <Typography fontSize="2rem" color="black">
+                {step.label}
+              </Typography>
             </StepButton>
 
             <StepContent>
@@ -38,7 +48,7 @@ export default function HorizontalNonLinearStepper({ steps }) {
                 <div>
                   {/* <Typography>${step.fee}</Typography> */}
                   {step.schedule.map((schedule) => (
-                    <Typography variant="h6">
+                    <Typography fontSize="1.5rem" color="primary">
                       {schedule.time > 0 ? schedule.time : '-'} 分鐘
                     </Typography>
                   ))}

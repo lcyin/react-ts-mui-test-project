@@ -18,7 +18,7 @@ const iconMap = {
 const darkTheme = createTheme({
   palette: {
     primary: {
-      main: '#f44336',
+      main: '#E11A14',
     },
   },
 });

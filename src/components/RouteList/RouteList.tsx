@@ -20,6 +20,7 @@ const styles = (theme: Theme) =>
       display: 'flex',
       alignItems: 'center',
       boxSizing: 'border-box',
+      fontSize: '1.25rem',
     },
     table: {
       // temporary right-to-left patch, waiting for

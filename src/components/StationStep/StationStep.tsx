@@ -39,7 +39,7 @@ export default function HorizontalNonLinearStepper({ steps }) {
                   {/* <Typography>${step.fee}</Typography> */}
                   {step.schedule.map((schedule) => (
                     <Typography variant="h6">
-                      {schedule.time > 0 ? schedule.time : '-'} mins
+                      {schedule.time > 0 ? schedule.time : '-'} 分鐘
                     </Typography>
                   ))}
                 </div>

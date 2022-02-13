@@ -6,18 +6,18 @@ import { useHomeFetch } from '../hooks/useHomeFetch';
 import '../style.css';
 const columns = [
   {
-    width: 120,
-    label: 'Route',
+    width: 100,
+    label: '路線',
     dataKey: 'route',
   },
   {
     width: 200,
-    label: 'Destination',
+    label: '目的地',
     dataKey: 'title',
   },
   {
-    width: 60,
-    label: 'Minutes',
+    width: 100,
+    label: '分鐘',
     dataKey: 'mins',
   },
 ];
@@ -26,7 +26,7 @@ export default function Home() {
   const { dataRow } = useHomeFetch();
   return (
     <div className="App">
-      <TopBar icon="menu" title="Header" />
+      <TopBar icon="menu" title="九巴時間表" />
       <RouteList rows={dataRow} columns={columns} redirect="/routeInfo" />
       {/* <BottomBar /> */}
     </div>
